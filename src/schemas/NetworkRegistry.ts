@@ -47,11 +47,6 @@ export class NetworkRegistry {
             displayName: 'TESTNET',
             url: "https://testnet.mirrornode.hedera.com/"
         },
-        {
-            name: 'previewnet',
-            displayName: 'PREVIEWNET',
-            url: "https://previewnet.mirrornode.hedera.com/"
-        }
     ]
 
     constructor() {
