@@ -22,7 +22,7 @@
 
 describe('Top Navigation Bar', () => {
 
-  beforeEach( () => {
+  beforeEach(() => {
     cy.visit('/')
     cy.url().should('include', '/testnet/dashboard')
   })
@@ -33,8 +33,8 @@ describe('Top Navigation Bar', () => {
     cy.contains('HCS Messages')
 
     cy.get('select')
-        .select('MAINNET')
-        .should('have.value', 'mainnet')
+      .select('MAINNET')
+      .should('have.value', 'mainnet')
 
     cy.url().should('include', '/mainnet/dashboard')
     cy.contains('Crypto Transfers')
@@ -42,22 +42,18 @@ describe('Top Navigation Bar', () => {
     cy.contains('HCS Messages')
 
     cy.get('select')
-        .select('TESTNET')
-        .should('have.value', 'testnet')
+      .select('TESTNET')
+      .should('have.value', 'testnet')
 
     cy.url().should('include', '/testnet/dashboard')
     cy.contains('Crypto Transfers')
     cy.contains('Smart Contract Calls')
     cy.contains('HCS Messages')
 
-    cy.get('select')
-        .select('PREVIEWNET')
-        .should('have.value', 'previewnet')
-
-    cy.url().should('include', '/previewnet/dashboard')
-    cy.contains('Crypto Transfers')
-    cy.contains('Smart Contract Calls')
-    cy.contains('HCS Messages')
+    // TODO may not be valuable to check that PREVIEWNET does NOT exist?
+    // cy.get('select')
+    //     .select('PREVIEWNET')
+    //     .should('have.value', 'previewnet')
   })
 
   it('should navigate to top level pages', () => {
@@ -83,4 +79,9 @@ describe('Top Navigation Bar', () => {
     cy.contains('HCS Messages')
   })
 
+  it('previewnet should NOT exist', () => {
+    cy.visit('/#/previewnet/dashboard')
+    cy.get('#app').should('contain', 'Page not found')
+    cy.get('select').should('not.have.value', 'previewnet')
+  })
 })
