@@ -1,12 +1,13 @@
 name: Hedera Mirror Node Explorer Unit Tests
 
-on: [ push, workflow_dispatch ]
+on: [push, workflow_dispatch]
 
 jobs:
-
   checkout-build-and-test:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [lts/*, 16.14]
 
     steps:
       - name: Checkout repository

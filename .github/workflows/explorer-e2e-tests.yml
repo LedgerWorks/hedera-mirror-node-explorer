@@ -1,11 +1,13 @@
 name: Hedera Mirror Node Explorer End-to-end Tests
 
-on: [ push, workflow_dispatch ]
+on: [push, workflow_dispatch]
 
 jobs:
   cypress-run:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [lts/*, 16.14]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -16,7 +18,5 @@ jobs:
           browser: chrome
           headless: true
           start: npm run serve:prod
-          wait-on: 'http://localhost:38920'
+          wait-on: "http://localhost:38920"
           spec: tests/e2e/specs/*
-
-          
