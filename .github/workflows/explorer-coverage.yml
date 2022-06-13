@@ -1,12 +1,14 @@
 name: Hedera Mirror Node Explorer Coverage Report
 
-on: [ workflow_dispatch ]
+on: [workflow_dispatch]
 
 jobs:
-
   coverage:
     runs-on: ubuntu-latest
-    
+    strategy:
+      matrix:
+        node-version: [lts/*, 16.14]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
